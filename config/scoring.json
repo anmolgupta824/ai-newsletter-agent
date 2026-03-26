@@ -1,0 +1,14 @@
+{
+  "CANDIDATE_THRESHOLD": 30,
+  "STORIES_PER_SECTION": 5,
+  "MAX_TO_SUMMARIZE": 25,
+  "TOKEN_CAP": 50000,
+  "scoring_model": "openai/gpt-4o-mini",
+  "editorial_model": "openai/gpt-4o-mini",
+  "CATEGORY_HINTS": {
+    "top_story": ["major release", "announced", "launches", "raises", "breakthrough", "acquired", "ipo"],
+    "launch": ["released", "launches", "introduces", "ships", "now available", "open source", "github", "v2", "v3"],
+    "pm_corner": ["product manager", "product management", "pm ", " pm ", "roadmap", "framework", "playbook", "career", "hiring"],
+    "stat": ["%", "percent", "million", "billion", "grew", "surpassed", "reached", "hit", "$", "arr", "dau", "mau"]
+  }
+}

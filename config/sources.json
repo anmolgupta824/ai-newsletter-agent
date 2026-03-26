@@ -1,0 +1,73 @@
+{
+  "rss_feeds": [
+    {
+      "name": "TechCrunch AI",
+      "url": "https://techcrunch.com/category/artificial-intelligence/feed/",
+      "source_name": "TechCrunch"
+    },
+    {
+      "name": "Anthropic",
+      "url": "https://www.anthropic.com/news/rss.xml",
+      "source_name": "Anthropic"
+    },
+    {
+      "name": "OpenAI",
+      "url": "https://openai.com/news/rss.xml",
+      "source_name": "OpenAI"
+    },
+    {
+      "name": "Google AI",
+      "url": "https://blog.google/technology/ai/rss/",
+      "source_name": "Google AI Blog"
+    },
+    {
+      "name": "Lenny's Newsletter",
+      "url": "https://www.lennysnewsletter.com/feed",
+      "source_name": "Lenny's Newsletter"
+    },
+    {
+      "name": "Product Talk",
+      "url": "https://www.producttalk.org/feed/",
+      "source_name": "Product Talk"
+    },
+    {
+      "name": "Mind the Product",
+      "url": "https://www.mindtheproduct.com/feed/",
+      "source_name": "Mind the Product"
+    },
+    {
+      "name": "a16z",
+      "url": "https://a16z.com/feed/",
+      "source_name": "a16z"
+    },
+    {
+      "name": "The Pragmatic Engineer",
+      "url": "https://newsletter.pragmaticengineer.com/feed",
+      "source_name": "The Pragmatic Engineer"
+    }
+  ],
+  "tavily_queries": [
+    "AI tools product launch 2026",
+    "LLM agent framework release",
+    "AI product management trends",
+    "generative AI startup launch",
+    "AI market share statistics 2026",
+    "AI adoption rate survey data 2026"
+  ],
+  "hackernews": {
+    "min_score": 50,
+    "max_stories": 100,
+    "ai_keywords": [
+      "ai", "artificial intelligence", "llm", "gpt", "claude", "gemini",
+      "mistral", "agent", "openai", "anthropic", "deepmind", "machine learning",
+      "neural", "langchain", "rag", "vector", "embedding", "fine-tun",
+      "inference", "diffusion", "stable diffusion", "multimodal", "copilot",
+      "cursor", "devin", "sora", "runway", "midjourney", "perplexity"
+    ]
+  },
+  "github": {
+    "topics": ["ai", "llm", "agents", "langchain", "rag", "openai", "anthropic"],
+    "min_stars": 100,
+    "max_repos": 20
+  }
+}
