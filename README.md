@@ -121,6 +121,10 @@ This repo includes instruction files for multiple AI coding platforms:
 - Hash-based dedup: no duplicate stories across runs
 - Rate limiting with exponential backoff
 
+---
+
+If this saved you time, give it a ⭐ — it helps others find this project.
+
 ## License
 
 MIT
