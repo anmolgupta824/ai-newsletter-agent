@@ -30,7 +30,7 @@ export function getOpenRouterClient(): OpenAI {
     apiKey,
     defaultHeaders: {
       'HTTP-Referer': process.env.SITE_URL ?? 'https://your-site.com',
-      'X-Title': process.env.DIGEST_NAME ?? 'AI Digest Agent',
+      'X-Title': process.env.DIGEST_NAME ?? 'AI Newsletter Agent',
     },
   });
 

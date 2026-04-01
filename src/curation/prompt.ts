@@ -1,10 +1,34 @@
 import { NormalizedStory } from '../types/index.js';
+import { readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+/**
+ * Load topic and audience from config/sources.json.
+ * These drive ALL prompts — change the config, change the newsletter.
+ */
+function getNewsletterConfig(): { topic: string; audience: string } {
+  try {
+    const config = JSON.parse(readFileSync(join(__dirname, '../../config/sources.json'), 'utf-8'));
+    return {
+      topic: config.topic ?? 'Technology',
+      audience: config.audience ?? 'tech professionals and enthusiasts',
+    };
+  } catch {
+    return { topic: 'Technology', audience: 'tech professionals and enthusiasts' };
+  }
+}
 
 /**
  * Build the batch scoring prompt.
  * Sends all stories in one call — returns structured JSON scores.
  */
 export function buildScoringPrompt(stories: NormalizedStory[]): string {
+  const { topic, audience } = getNewsletterConfig();
+
   const storyList = stories.map((s, i) => ({
     index: i,
     title: s.title,
@@ -15,21 +39,21 @@ export function buildScoringPrompt(stories: NormalizedStory[]): string {
     snippet: s.raw_summary?.slice(0, 150) ?? '',
   }));
 
-  return `You are the editor of a weekly AI digest — a newsletter for people who build with AI (PMs, engineers, founders).
+  return `You are the editor of a weekly ${topic} newsletter for ${audience}.
 
-Score each article for inclusion in this week's digest.
+Score each article for inclusion in this week's newsletter.
 
 ## Scoring criteria (each 0-10, total 0-50):
-1. **Relevance** — Is it about AI, LLMs, AI tools, or building AI products? (not just vague "tech")
-2. **Signal** — Is it actionable? Can a builder DO something with this? (launch = high, opinion piece = low)
+1. **Relevance** — Is it directly about ${topic}? (core topic = 10, tangential = 3, unrelated = 0)
+2. **Signal** — Is it actionable? Can a reader DO something with this? (launch = high, opinion piece = low)
 3. **Freshness** — Published this week? (7 days = 10, older = lower)
-4. **Credibility** — Known source, official blog, or well-sourced? (major AI lab blog = 10, random Medium = 3)
+4. **Credibility** — Known source, official blog, or well-sourced? (major publication = 10, random blog = 3)
 5. **Engagement** — Community-validated? (HN 100+ points, PH 200+ upvotes = high)
 
 ## Category assignment (pick one):
-- **top_story** — A single concrete event: a major product launch, funding round, acquisition, or capability breakthrough. Must be a specific action by a specific company. NOT a listicle, ranking, or trend piece.
+- **top_story** — A single concrete event: a major product launch, funding round, acquisition, or breakthrough. Must be a specific action by a specific company. NOT a listicle, ranking, or trend piece.
 - **launch** — New tool, open-source repo, product update, SDK release, API launch
-- **pm_corner** — PM-specific: career advice, frameworks, hiring trends, PM tool launches, product strategy
+- **deep_dive** — Analysis, insights, frameworks, research findings, expert perspectives relevant to ${topic}
 - **stat** — Quantitative insight: growth stats, survey data, market numbers, benchmark results
 
 ## Threshold: Score 30+ enters candidate pool. Score 35+ = pre-selected.
@@ -58,9 +82,11 @@ Return ONLY the JSON array. No explanation.`;
  * Build the summarize prompt for a single story.
  */
 export function buildSummarizePrompt(story: NormalizedStory, category: string): string {
-  return `You are the editor of a weekly AI digest — a newsletter for people who build with AI: engineers, PMs, founders, indie hackers.
+  const { topic, audience } = getNewsletterConfig();
 
-Write a digest entry for this ${category} story.
+  return `You are the editor of a weekly ${topic} newsletter for ${audience}.
+
+Write a newsletter entry for this ${category} story.
 
 ## Story:
 Title: ${story.title}
@@ -96,7 +122,7 @@ Return ONLY the JSON. No explanation.`;
  *
  * THIS IS A PLACEHOLDER — replace it with your own voice and personality.
  *
- * The editorial is the most important part of your digest. It's what makes
+ * The editorial is the most important part of your newsletter. It's what makes
  * readers feel like they're getting YOUR take, not just a list of links.
  *
  * See examples/sample-output.md for what a tuned editorial looks like.
@@ -131,6 +157,8 @@ export function buildEditorialPrompt(
     url: string;
   }>,
 ): { system: string; user: string } {
+  const { topic, audience } = getNewsletterConfig();
+
   const storyList = selectedStories.map((s, i) => `
 [${i}] ${s.headline}
 Source: ${s.source_name} | Score: ${s.ai_score ?? 0}/50 | Category: ${s.category}
@@ -138,39 +166,39 @@ Summary: ${s.summary}
 Why it matters: ${s.why_it_matters ?? ''}
 `).join('\n---\n');
 
-  const system = `You are the editor of a weekly AI digest newsletter.
-Your readers are engineers, PMs, and founders who build with AI.
+  const system = `You are the editor of a weekly ${topic} newsletter.
+Your readers are ${audience}.
 Write in a clear, opinionated voice. Be specific. Use real numbers and company names.
 Short paragraphs. Strong opinions. No filler.
 
 TODO: Replace this prompt with your own voice and personality.
 See src/curation/prompt.ts for instructions.`;
 
-  const user = `Here are this week's top AI stories:
+  const user = `Here are this week's top ${topic} stories:
 
 ${storyList}
 
 Write a weekly editorial (600-1000 words) covering the most important stories.
 
 Structure:
-### 🔥 The Big One
+### The Big One
 The single most important story. What happened, why it matters, what readers should do.
 
-### 🚀 What Launched
+### What Launched
 Bullet list of notable launches this week.
 - **Product name** — what it does in <10 words [story_id: n]
 
-### 👀 Three Signals
+### Three Signals
 Three forward-looking observations based on this week's stories.
-→ **Bold signal.** 1 sentence max.
+> **Bold signal.** 1 sentence max.
 
-### 💬 Final Note
+### Final Note
 2-3 sentences. Your closing thought for the week.
 
-### 😂 Joke of the Week
-One short AI/tech joke.
+### Joke of the Week
+One short ${topic}-related joke.
 > "The joke."
-> — Your Digest Team
+> — Your Newsletter Team
 
 Be specific. Name companies and numbers. No generic takes.`;
 

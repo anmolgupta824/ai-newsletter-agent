@@ -1,4 +1,6 @@
 {
+  "topic": "AI & Machine Learning",
+  "audience": "engineers, PMs, founders, and indie hackers who build with AI",
   "rss_feeds": [
     { "name": "TechCrunch AI", "url": "https://techcrunch.com/category/artificial-intelligence/feed/", "source_name": "TechCrunch" },
     { "name": "Anthropic", "url": "https://www.anthropic.com/news/rss.xml", "source_name": "Anthropic" },
@@ -15,7 +17,7 @@
   "hackernews": {
     "min_score": 50,
     "max_stories": 100,
-    "ai_keywords": ["ai", "artificial intelligence", "llm", "gpt", "claude", "gemini", "agent", "openai", "anthropic", "machine learning", "neural", "langchain", "rag", "copilot", "cursor", "devin"]
+    "keywords": ["ai", "artificial intelligence", "llm", "gpt", "claude", "gemini", "agent", "openai", "anthropic", "machine learning", "neural", "langchain", "rag", "copilot", "cursor", "devin"]
   },
   "github": {
     "topics": ["ai", "llm", "agents", "langchain", "rag", "openai", "anthropic"],

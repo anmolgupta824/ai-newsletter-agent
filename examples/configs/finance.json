@@ -1,4 +1,6 @@
 {
+  "topic": "Finance & Markets",
+  "audience": "investors, analysts, and finance professionals tracking markets and macro trends",
   "rss_feeds": [
     { "name": "Bloomberg Markets", "url": "https://feeds.bloomberg.com/markets/news.rss", "source_name": "Bloomberg" },
     { "name": "Seeking Alpha", "url": "https://seekingalpha.com/feed.xml", "source_name": "Seeking Alpha" },
@@ -17,7 +19,7 @@
   "hackernews": {
     "min_score": 50,
     "max_stories": 100,
-    "ai_keywords": ["finance", "stocks", "investing", "SEC", "IPO", "hedge fund", "trading", "market", "bonds", "inflation", "fed", "interest rate", "earnings", "valuation"]
+    "keywords": ["finance", "stocks", "investing", "SEC", "IPO", "hedge fund", "trading", "market", "bonds", "inflation", "fed", "interest rate", "earnings", "valuation"]
   },
   "github": {
     "topics": ["finance", "trading", "quantitative-finance", "stock-market", "algorithmic-trading"],

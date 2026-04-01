@@ -1,4 +1,6 @@
 {
+  "topic": "Crypto & Fintech",
+  "audience": "traders, founders, and fintech builders working in crypto, DeFi, and payments",
   "rss_feeds": [
     { "name": "CoinDesk", "url": "https://www.coindesk.com/arc/outboundfeeds/rss/", "source_name": "CoinDesk" },
     { "name": "The Block", "url": "https://www.theblock.co/rss.xml", "source_name": "The Block" },
@@ -17,7 +19,7 @@
   "hackernews": {
     "min_score": 50,
     "max_stories": 100,
-    "ai_keywords": ["crypto", "bitcoin", "ethereum", "defi", "web3", "solana", "nft", "blockchain", "fintech", "stripe", "plaid", "banking", "payments", "stablecoin", "layer2"]
+    "keywords": ["crypto", "bitcoin", "ethereum", "defi", "web3", "solana", "nft", "blockchain", "fintech", "stripe", "plaid", "banking", "payments", "stablecoin", "layer2"]
   },
   "github": {
     "topics": ["crypto", "defi", "web3", "blockchain", "ethereum", "solana", "fintech"],

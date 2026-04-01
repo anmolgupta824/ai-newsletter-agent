@@ -1,4 +1,6 @@
 {
+  "topic": "Healthcare & Biotech",
+  "audience": "healthcare professionals, biotech founders, and digital health builders",
   "rss_feeds": [
     { "name": "STAT News", "url": "https://www.statnews.com/feed/", "source_name": "STAT News" },
     { "name": "Fierce Healthcare", "url": "https://www.fiercehealthcare.com/rss/xml", "source_name": "Fierce Healthcare" },
@@ -17,7 +19,7 @@
   "hackernews": {
     "min_score": 50,
     "max_stories": 100,
-    "ai_keywords": ["healthcare", "biotech", "FDA", "medtech", "healthtech", "clinical trial", "pharma", "telehealth", "digital health", "genomics", "drug discovery", "medical AI"]
+    "keywords": ["healthcare", "biotech", "FDA", "medtech", "healthtech", "clinical trial", "pharma", "telehealth", "digital health", "genomics", "drug discovery", "medical AI"]
   },
   "github": {
     "topics": ["healthcare", "biotech", "medical", "health-informatics", "digital-health"],

@@ -1,4 +1,6 @@
 {
+  "topic": "Product Management",
+  "audience": "product managers, product leaders, and founders building user-facing products",
   "rss_feeds": [
     { "name": "Lenny's Newsletter", "url": "https://www.lennysnewsletter.com/feed", "source_name": "Lenny's Newsletter" },
     { "name": "Product Talk", "url": "https://www.producttalk.org/feed/", "source_name": "Product Talk" },
@@ -18,7 +20,7 @@
   "hackernews": {
     "min_score": 50,
     "max_stories": 100,
-    "ai_keywords": ["product management", "PM", "roadmap", "OKR", "product-led growth", "PLG", "user research", "A/B test", "feature flag", "product strategy", "sprint", "agile", "product market fit"]
+    "keywords": ["product management", "PM", "roadmap", "OKR", "product-led growth", "PLG", "user research", "A/B test", "feature flag", "product strategy", "sprint", "agile", "product market fit"]
   },
   "github": {
     "topics": ["product-management", "roadmap", "analytics", "feature-flags", "ab-testing"],

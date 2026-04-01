@@ -1,4 +1,6 @@
 {
+  "topic": "Tech & Infrastructure",
+  "audience": "developers, DevOps engineers, and CTOs building cloud-native systems",
   "rss_feeds": [
     { "name": "The New Stack", "url": "https://thenewstack.io/feed/", "source_name": "The New Stack" },
     { "name": "InfoQ", "url": "https://www.infoq.com/feed/", "source_name": "InfoQ" },
@@ -16,7 +18,7 @@
   "hackernews": {
     "min_score": 50,
     "max_stories": 100,
-    "ai_keywords": ["devops", "kubernetes", "docker", "terraform", "cloud", "aws", "gcp", "azure", "serverless", "CI/CD", "infrastructure", "microservices", "rust", "go", "typescript"]
+    "keywords": ["devops", "kubernetes", "docker", "terraform", "cloud", "aws", "gcp", "azure", "serverless", "CI/CD", "infrastructure", "microservices", "rust", "go", "typescript"]
   },
   "github": {
     "topics": ["devops", "kubernetes", "docker", "terraform", "cloud-native", "infrastructure"],

@@ -12,7 +12,7 @@ const __dirname = dirname(__filename);
 const sourcesConfig = JSON.parse(readFileSync(join(__dirname, '../../config/sources.json'), 'utf-8')) as SourcesConfig;
 
 interface SourcesConfig {
-  hackernews: { min_score: number; max_stories: number; ai_keywords: string[] };
+  hackernews: { min_score: number; max_stories: number; keywords?: string[]; ai_keywords?: string[] };
 }
 
 const HN_API = 'https://hacker-news.firebaseio.com/v0';
@@ -37,7 +37,7 @@ export class HackerNewsSource extends BaseSource {
     );
 
     const cutoff = Date.now() - SEVEN_DAYS_MS;
-    const keywords = sourcesConfig.hackernews.ai_keywords;
+    const keywords = sourcesConfig.hackernews.keywords ?? sourcesConfig.hackernews.ai_keywords ?? [];
     const minScore = sourcesConfig.hackernews.min_score;
 
     return items
@@ -46,7 +46,7 @@ export class HackerNewsSource extends BaseSource {
         item.url !== undefined &&
         item.score >= minScore &&
         item.time * 1000 > cutoff &&
-        this.isAiRelated(item.title, keywords)
+        this.isRelevant(item.title, keywords)
       )
       .map(item => this.normalize(item));
   }
@@ -64,7 +64,7 @@ export class HackerNewsSource extends BaseSource {
     }
   }
 
-  private isAiRelated(title: string, keywords: string[]): boolean {
+  private isRelevant(title: string, keywords: string[]): boolean {
     const lower = title.toLowerCase();
     return keywords.some(kw => lower.includes(kw));
   }

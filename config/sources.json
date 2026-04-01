@@ -1,4 +1,6 @@
 {
+  "topic": "AI & Machine Learning",
+  "audience": "engineers, PMs, founders, and indie hackers who build with AI",
   "rss_feeds": [
     {
       "name": "TechCrunch AI",
@@ -57,7 +59,7 @@
   "hackernews": {
     "min_score": 50,
     "max_stories": 100,
-    "ai_keywords": [
+    "keywords": [
       "ai", "artificial intelligence", "llm", "gpt", "claude", "gemini",
       "mistral", "agent", "openai", "anthropic", "deepmind", "machine learning",
       "neural", "langchain", "rag", "vector", "embedding", "fine-tun",
