@@ -16,6 +16,8 @@
   <b>Any topic. Any niche. $0.006 per run.</b>
   <br/>
   <i>Ships with 6 ready-to-use configs: AI, Crypto, Finance, Healthcare, Tech, Product Management</i>
+  <br/><br/>
+  <a href="https://github.com/anmolgupta824/ai-newsletter-agent/stargazers"><img src="https://img.shields.io/badge/Like%20this%3F-Give%20it%20a%20%E2%AD%90-yellow?style=for-the-badge" alt="Star this repo"></a>
 </p>
 
 ---
