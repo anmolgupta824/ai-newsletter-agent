@@ -21,12 +21,15 @@ When the user first opens this project, walk them through:
 
 1. **Ask their topic.** "What topic do you want your newsletter to cover?" Then pick the closest config from `examples/configs/` and copy it to `config/sources.json`. Available: ai, crypto-fintech, finance, healthcare, tech, product-management. If none fit, help them create a custom config with RSS feeds for their niche.
 
-2. **Environment setup.** Check if `.env.local` exists. If not, copy `.env.example` to `.env.local` and ask the user to fill in:
-   - `OPENROUTER_API_KEY` (required -- get at openrouter.ai/keys)
-   - `TAVILY_API_KEY` (required -- free tier at tavily.com)
-   - `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` (required -- supabase.com or local)
+2. **Environment setup.** Check if `.env.local` exists. If not, copy `.env.example` to `.env.local`. Then STOP and ask the user for each key one by one. Do NOT proceed until all keys are provided:
+   - `OPENROUTER_API_KEY` (required) -- Ask: "Do you have an OpenRouter API key? If not, get one free at https://openrouter.ai/keys"
+   - `TAVILY_API_KEY` (required) -- Ask: "Do you have a Tavily API key? Free tier at https://tavily.com gives you 1000 searches/month"
+   - `SUPABASE_URL` (required) -- Ask: "What's your Supabase project URL? If you don't have one, create a free project at https://supabase.com"
+   - `SUPABASE_SERVICE_ROLE_KEY` (required) -- Ask: "What's your Supabase service role key? Find it in Supabase Dashboard > Settings > API > service_role key"
 
-3. **Database setup.** Run `migrations/001-create-tables.sql` against their Supabase instance.
+   IMPORTANT: Never skip this step. Never use placeholder values. The pipeline will fail without real keys. Write each key to `.env.local` as the user provides them.
+
+3. **Database setup.** Run `migrations/001-create-tables.sql` against their Supabase instance. Ask: "Should I run the migration now? This creates the tables needed for the newsletter."
 
 4. **Install.** `npm install`
 

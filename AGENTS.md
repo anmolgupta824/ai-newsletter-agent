@@ -23,9 +23,14 @@ Walk the user through:
 
 1. **Ask their topic.** Pick closest config from `examples/configs/` and copy to `config/sources.json`. Available: ai, crypto-fintech, finance, healthcare, tech, product-management.
 
-2. **Environment.** Copy `.env.example` to `.env.local`. User needs: `OPENROUTER_API_KEY`, `TAVILY_API_KEY`, `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`.
+2. **Environment.** Copy `.env.example` to `.env.local`. Then STOP and ask the user for each key one by one. Do NOT proceed until all keys are provided:
+   - `OPENROUTER_API_KEY` (required) -- free at https://openrouter.ai/keys
+   - `TAVILY_API_KEY` (required) -- free at https://tavily.com
+   - `SUPABASE_URL` (required) -- from Supabase Dashboard > Settings > API
+   - `SUPABASE_SERVICE_ROLE_KEY` (required) -- from Supabase Dashboard > Settings > API > service_role
+   Never use placeholder values. The pipeline will fail without real keys.
 
-3. **Database.** Run `migrations/001-create-tables.sql` in Supabase SQL editor.
+3. **Database.** Ask the user before running. Then run `migrations/001-create-tables.sql` in their Supabase instance.
 
 4. **Install + test.** `npm install` then `npm run digest:generate -- --dry-run`
 
