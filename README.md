@@ -39,7 +39,7 @@ It runs on a cron. You set it up once. Every week, a new issue appears. No manua
 ## The Pipeline
 
 ```
-                         YOUR NEWSLETTER AGENT
+              YOUR NEWSLETTER AGENT (example: AI config)
   ================================================================
 
   STEP 1: COLLECT                          6 Source Types
