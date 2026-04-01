@@ -1,7 +1,7 @@
 {
-  "name": "ai-digest-agent",
-  "version": "1.0.0",
-  "description": "Build your own AI-curated weekly digest in 30 minutes",
+  "name": "ai-newsletter-agent",
+  "version": "2.0.0",
+  "description": "Build a curated newsletter on any topic. 90+ articles scored, top 25 curated, editorial written. $0.006/run.",
   "type": "module",
   "scripts": {
     "digest:generate": "tsx --env-file=.env.local src/index.ts",

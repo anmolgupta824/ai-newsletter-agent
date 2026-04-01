@@ -1,0 +1,26 @@
+{
+  "rss_feeds": [
+    { "name": "The New Stack", "url": "https://thenewstack.io/feed/", "source_name": "The New Stack" },
+    { "name": "InfoQ", "url": "https://www.infoq.com/feed/", "source_name": "InfoQ" },
+    { "name": "DZone", "url": "https://feeds.dzone.com/home", "source_name": "DZone" },
+    { "name": "TechCrunch", "url": "https://techcrunch.com/feed/", "source_name": "TechCrunch" }
+  ],
+  "tavily_queries": [
+    "kubernetes release 2026",
+    "cloud infrastructure launch",
+    "developer tools new release",
+    "CI/CD pipeline innovation",
+    "open source project trending",
+    "serverless framework update"
+  ],
+  "hackernews": {
+    "min_score": 50,
+    "max_stories": 100,
+    "ai_keywords": ["devops", "kubernetes", "docker", "terraform", "cloud", "aws", "gcp", "azure", "serverless", "CI/CD", "infrastructure", "microservices", "rust", "go", "typescript"]
+  },
+  "github": {
+    "topics": ["devops", "kubernetes", "docker", "terraform", "cloud-native", "infrastructure"],
+    "min_stars": 100,
+    "max_repos": 20
+  }
+}

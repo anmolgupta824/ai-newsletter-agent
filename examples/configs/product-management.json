@@ -1,0 +1,28 @@
+{
+  "rss_feeds": [
+    { "name": "Lenny's Newsletter", "url": "https://www.lennysnewsletter.com/feed", "source_name": "Lenny's Newsletter" },
+    { "name": "Product Talk", "url": "https://www.producttalk.org/feed/", "source_name": "Product Talk" },
+    { "name": "SVPG", "url": "https://www.svpg.com/feed/", "source_name": "SVPG" },
+    { "name": "Pragmatic Engineer", "url": "https://newsletter.pragmaticengineer.com/feed", "source_name": "The Pragmatic Engineer" },
+    { "name": "ProductPlan", "url": "https://www.productplan.com/blog/feed/", "source_name": "ProductPlan" },
+    { "name": "Intercom Blog", "url": "https://www.intercom.com/blog/feed", "source_name": "Intercom" }
+  ],
+  "tavily_queries": [
+    "product management trends 2026",
+    "PM interview questions FAANG",
+    "product strategy framework",
+    "product-led growth case study",
+    "B2B SaaS product launch",
+    "OKR planning best practices"
+  ],
+  "hackernews": {
+    "min_score": 50,
+    "max_stories": 100,
+    "ai_keywords": ["product management", "PM", "roadmap", "OKR", "product-led growth", "PLG", "user research", "A/B test", "feature flag", "product strategy", "sprint", "agile", "product market fit"]
+  },
+  "github": {
+    "topics": ["product-management", "roadmap", "analytics", "feature-flags", "ab-testing"],
+    "min_stars": 50,
+    "max_repos": 20
+  }
+}

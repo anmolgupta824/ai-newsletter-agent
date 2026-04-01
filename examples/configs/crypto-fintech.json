@@ -1,0 +1,27 @@
+{
+  "rss_feeds": [
+    { "name": "CoinDesk", "url": "https://www.coindesk.com/arc/outboundfeeds/rss/", "source_name": "CoinDesk" },
+    { "name": "The Block", "url": "https://www.theblock.co/rss.xml", "source_name": "The Block" },
+    { "name": "Decrypt", "url": "https://decrypt.co/feed", "source_name": "Decrypt" },
+    { "name": "CoinTelegraph", "url": "https://cointelegraph.com/rss", "source_name": "CoinTelegraph" },
+    { "name": "TechCrunch Fintech", "url": "https://techcrunch.com/category/fintech/feed/", "source_name": "TechCrunch" }
+  ],
+  "tavily_queries": [
+    "crypto regulation 2026",
+    "defi protocol launch",
+    "bitcoin ETF news",
+    "fintech startup funding",
+    "neobank launch 2026",
+    "payments API new release"
+  ],
+  "hackernews": {
+    "min_score": 50,
+    "max_stories": 100,
+    "ai_keywords": ["crypto", "bitcoin", "ethereum", "defi", "web3", "solana", "nft", "blockchain", "fintech", "stripe", "plaid", "banking", "payments", "stablecoin", "layer2"]
+  },
+  "github": {
+    "topics": ["crypto", "defi", "web3", "blockchain", "ethereum", "solana", "fintech"],
+    "min_stars": 100,
+    "max_repos": 20
+  }
+}

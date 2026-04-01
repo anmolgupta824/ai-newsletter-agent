@@ -1,63 +1,56 @@
-# AI Digest Agent — Instructions for AI Coding Assistants
+# AI Newsletter Agent -- Instructions for AI Coding Tools
 
-This file is for AI coding tools: OpenAI Codex, GitHub Copilot, Cursor, Windsurf, Amp, Devin, Replit Agent.
+> This file is for OpenAI Codex, GitHub Copilot, Cursor, Windsurf, Amp, Devin, Replit, and similar tools.
 
-See CLAUDE.md for the full context. Key points for agents:
+You are helping the user build an automated newsletter using this codebase.
 
-## Project
+## What This Project Does
 
-Automated weekly digest pipeline. Collects AI news → scores with AI → selects top 25 → writes editorial → stores in Supabase.
+This is an AI-powered newsletter agent. It:
+1. Collects 90+ articles from 6 sources (Hacker News, Product Hunt, GitHub Trending, RSS feeds, Tavily Search, custom scraper)
+2. AI-scores every article on 5 criteria (relevance, signal, freshness, credibility, engagement)
+3. Selects the top 25 stories (5 per section)
+4. Writes AI summaries + "why it matters" for each
+5. Generates a weekly editorial in the user's voice
+6. Stores everything in Supabase
+7. Runs weekly via GitHub Actions cron
 
-## Entry Point
+Cost: ~$0.006/run with gpt-4o-mini via OpenRouter.
 
-`src/index.ts` — CLI with `--dry-run`, `--source`, `--health-check`, `--status` flags.
+## First-Time Setup
 
-## Key Files to Know
+Walk the user through:
 
-| File | Purpose |
-|------|---------|
-| `src/curation/prompt.ts` | All AI prompts — editorial customization goes here |
-| `config/scoring.json` | Thresholds and model selection |
-| `config/sources.json` | RSS feeds and search queries |
-| `migrations/001-create-tables.sql` | Full Supabase schema |
+1. **Ask their topic.** Pick closest config from `examples/configs/` and copy to `config/sources.json`. Available: ai, crypto-fintech, finance, healthcare, tech, product-management.
 
-## Adding a Source
+2. **Environment.** Copy `.env.example` to `.env.local`. User needs: `OPENROUTER_API_KEY`, `TAVILY_API_KEY`, `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`.
 
-Extend `BaseSource` in `src/sources/base-source.ts`. Implement:
-- `fetchStories(): Promise<NormalizedStory[]>` — return normalized stories
-- `healthCheck(): Promise<boolean>` — return true if source is reachable
-- `readonly sourceName: SourceName` — source identifier
+3. **Database.** Run `migrations/001-create-tables.sql` in Supabase SQL editor.
 
-Register in `getAllSources()` in `src/index.ts`.
+4. **Install + test.** `npm install` then `npm run digest:generate -- --dry-run`
 
-## Story Interface
+5. **First run.** `npm run digest:generate`
 
-```typescript
-interface NormalizedStory {
-  url: string;
-  title: string;
-  raw_summary?: string;
-  source_name: string;
-  source_domain: string;
-  source_favicon_url: string;
-  og_image_url?: string;
-  engagement_stats: Record<string, number>;
-  published_at: string;        // ISO 8601
-  content_hash: string;        // sha256(url+title)[:16]
-}
-```
+6. **Automate.** Set up `.github/workflows/newsletter-weekly.yml` with repo secrets.
 
-## Editing the Editorial Prompt
+## Key Commands
 
-`buildEditorialPrompt()` in `src/curation/prompt.ts` returns `{ system: string, user: string }`.
-Replace the placeholder with a prompt that defines your voice, required sections, and tone examples.
+- `npm run digest:generate` -- Full pipeline
+- `npm run digest:generate -- --dry-run` -- Preview without saving
+- `npm run digest:generate -- --source hackernews` -- Single source test
+- `npm run digest:health-check` -- Ping all source APIs
+- `npm run digest:status` -- Show recent newsletters
 
-## Environment
+## Common Tasks
 
-Uses `dotenv` — reads from `.env.local` locally, GitHub Actions secrets in CI.
-Copy `.env.example` to `.env.local` and fill in credentials.
+- **Change topic:** `cp examples/configs/[niche].json config/sources.json`
+- **Add RSS source:** Add to `config/sources.json` rss_feeds array
+- **Change editorial voice:** Edit `src/curation/editorial.ts` buildEditorialPrompt()
+- **Change AI model:** Edit `config/scoring.json` scoring_model / editorial_model
+- **Add source type:** Create `src/sources/your-source.ts`, extend BaseSource, add to getAllSources()
 
-## Testing
+## Guardrails
 
-Always test with `--dry-run` first. No DB writes, shows scoring output.
-Use `--source <name>` to test a single source.
+- Max 50 LLM calls per run, max 50K tokens
+- Fault isolated: one source failing never kills pipeline
+- Hash-based dedup, rate limiting, idempotent

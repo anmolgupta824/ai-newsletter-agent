@@ -1,0 +1,25 @@
+{
+  "rss_feeds": [
+    { "name": "TechCrunch AI", "url": "https://techcrunch.com/category/artificial-intelligence/feed/", "source_name": "TechCrunch" },
+    { "name": "Anthropic", "url": "https://www.anthropic.com/news/rss.xml", "source_name": "Anthropic" },
+    { "name": "OpenAI", "url": "https://openai.com/news/rss.xml", "source_name": "OpenAI" },
+    { "name": "Google AI", "url": "https://blog.google/technology/ai/rss/", "source_name": "Google AI Blog" },
+    { "name": "a16z", "url": "https://a16z.com/feed/", "source_name": "a16z" }
+  ],
+  "tavily_queries": [
+    "AI tools product launch 2026",
+    "LLM agent framework release",
+    "generative AI startup launch",
+    "AI market share statistics 2026"
+  ],
+  "hackernews": {
+    "min_score": 50,
+    "max_stories": 100,
+    "ai_keywords": ["ai", "artificial intelligence", "llm", "gpt", "claude", "gemini", "agent", "openai", "anthropic", "machine learning", "neural", "langchain", "rag", "copilot", "cursor", "devin"]
+  },
+  "github": {
+    "topics": ["ai", "llm", "agents", "langchain", "rag", "openai", "anthropic"],
+    "min_stars": 100,
+    "max_repos": 20
+  }
+}

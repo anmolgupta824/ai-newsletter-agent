@@ -1,28 +1,56 @@
-# AI Digest Agent — Gemini CLI Instructions
+# AI Newsletter Agent -- Gemini CLI Instructions
 
-This file is for Gemini CLI. See CLAUDE.md for full project context.
+> This file is for Google Gemini CLI.
 
-## Quick Reference
+You are helping the user build an automated newsletter using this codebase.
 
-**Run pipeline:** `npm run digest:generate`
-**Dry run (no DB):** `npm run digest:generate -- --dry-run`
-**Single source:** `npm run digest:generate -- --source hackernews`
-**Health check:** `npm run digest:health-check`
+## What This Project Does
 
-## What to Customize
+This is an AI-powered newsletter agent. It:
+1. Collects 90+ articles from 6 sources (Hacker News, Product Hunt, GitHub Trending, RSS feeds, Tavily Search, custom scraper)
+2. AI-scores every article on 5 criteria (relevance, signal, freshness, credibility, engagement)
+3. Selects the top 25 stories (5 per section)
+4. Writes AI summaries + "why it matters" for each
+5. Generates a weekly editorial in the user's voice
+6. Stores everything in Supabase
+7. Runs weekly via GitHub Actions cron
 
-1. **Editorial voice:** `src/curation/prompt.ts` → `buildEditorialPrompt()`
-2. **Sources:** `config/sources.json` → add RSS feeds or Tavily queries
-3. **Scoring:** `config/scoring.json` → change thresholds or model
+Cost: ~$0.006/run with gpt-4o-mini via OpenRouter.
 
-## Database Setup
+## First-Time Setup
 
-Run `migrations/001-create-tables.sql` in Supabase Studio before first use.
+Walk the user through:
 
-## Environment
+1. **Ask their topic.** Pick closest config from `examples/configs/` and copy to `config/sources.json`. Available: ai, crypto-fintech, finance, healthcare, tech, product-management.
 
-Copy `.env.example` to `.env.local`. Required keys:
-- `OPENROUTER_API_KEY`
-- `TAVILY_API_KEY`
-- `SUPABASE_URL`
-- `SUPABASE_SERVICE_ROLE_KEY`
+2. **Environment.** Copy `.env.example` to `.env.local`. User needs: `OPENROUTER_API_KEY`, `TAVILY_API_KEY`, `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`.
+
+3. **Database.** Run `migrations/001-create-tables.sql` in Supabase SQL editor.
+
+4. **Install + test.** `npm install` then `npm run digest:generate -- --dry-run`
+
+5. **First run.** `npm run digest:generate`
+
+6. **Automate.** Set up `.github/workflows/newsletter-weekly.yml` with repo secrets.
+
+## Key Commands
+
+- `npm run digest:generate` -- Full pipeline
+- `npm run digest:generate -- --dry-run` -- Preview without saving
+- `npm run digest:generate -- --source hackernews` -- Single source test
+- `npm run digest:health-check` -- Ping all source APIs
+- `npm run digest:status` -- Show recent newsletters
+
+## Common Tasks
+
+- **Change topic:** `cp examples/configs/[niche].json config/sources.json`
+- **Add RSS source:** Add to `config/sources.json` rss_feeds array
+- **Change editorial voice:** Edit `src/curation/editorial.ts` buildEditorialPrompt()
+- **Change AI model:** Edit `config/scoring.json` scoring_model / editorial_model
+- **Add source type:** Create `src/sources/your-source.ts`, extend BaseSource, add to getAllSources()
+
+## Guardrails
+
+- Max 50 LLM calls per run, max 50K tokens
+- Fault isolated: one source failing never kills pipeline
+- Hash-based dedup, rate limiting, idempotent

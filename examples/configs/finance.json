@@ -1,0 +1,27 @@
+{
+  "rss_feeds": [
+    { "name": "Bloomberg Markets", "url": "https://feeds.bloomberg.com/markets/news.rss", "source_name": "Bloomberg" },
+    { "name": "Seeking Alpha", "url": "https://seekingalpha.com/feed.xml", "source_name": "Seeking Alpha" },
+    { "name": "Motley Fool", "url": "https://www.fool.com/feeds/index.aspx", "source_name": "Motley Fool" },
+    { "name": "MarketWatch", "url": "https://www.marketwatch.com/rss/topstories", "source_name": "MarketWatch" },
+    { "name": "NYT Business", "url": "https://rss.nytimes.com/services/xml/rss/nyt/Business.xml", "source_name": "NYT" }
+  ],
+  "tavily_queries": [
+    "stock market analysis today",
+    "fed interest rate decision 2026",
+    "IPO filing 2026",
+    "earnings report surprise",
+    "market crash prediction",
+    "hedge fund strategy"
+  ],
+  "hackernews": {
+    "min_score": 50,
+    "max_stories": 100,
+    "ai_keywords": ["finance", "stocks", "investing", "SEC", "IPO", "hedge fund", "trading", "market", "bonds", "inflation", "fed", "interest rate", "earnings", "valuation"]
+  },
+  "github": {
+    "topics": ["finance", "trading", "quantitative-finance", "stock-market", "algorithmic-trading"],
+    "min_stars": 100,
+    "max_repos": 20
+  }
+}
